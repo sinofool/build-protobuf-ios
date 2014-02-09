@@ -15,22 +15,22 @@ make install || exit 4
 # iOS SDK location. 
 ###################################################
 
-SDKROOT=/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.1.sdk
-DEVROOT=/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer
+SDKROOT=/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.0.sdk
+DEVROOT=
 export CC=${DEVROOT}/usr/bin/llvm-gcc
 export CXX=${DEVROOT}/usr/bin/llvm-g++
-export CXXFLAGS="$CFLAGS"
-export LDFLAGS="-isysroot $SDKROOT -Wl,-syslibroot $SDKROOT"
 
 ###################################################
 # Build armv7 version, 
 ###################################################
 export CFLAGS="-arch armv7 -isysroot $SDKROOT"
+export CXXFLAGS="$CFLAGS"
+export LDFLAGS="-arch armv7 -isysroot $SDKROOT -Wl,-syslibroot $SDKROOT"
 ./configure --prefix=$TMP_DIR/armv7 \
         --with-protoc=${TMP_DIR}/i386/bin/protoc \
         --disable-shared \
         --enable-static \
-        -host=arm-apple-darwin10 || exit 1
+        --host=arm-apple-darwin10 || exit 1
 make clean || exit 2
 make -j8 || exit 3
 make install || exit 4
@@ -38,11 +38,13 @@ make install || exit 4
 # Build armv7s version, 
 ###################################################
 export CFLAGS="-arch armv7s -isysroot $SDKROOT"
+export CXXFLAGS="$CFLAGS"
+export LDFLAGS="-arch armv7s -isysroot $SDKROOT -Wl,-syslibroot $SDKROOT"
 ./configure --prefix=$TMP_DIR/armv7s \
         --with-protoc=${TMP_DIR}/i386/bin/protoc \
         --disable-shared \
         --enable-static \
-        -host=arm-apple-darwin10 || exit 1
+        --host=arm-apple-darwin10 || exit 1
 make clean || exit 2
 make -j8 || exit 3
 make install || exit 4
