@@ -16,16 +16,17 @@ make install || exit 4
 ###################################################
 
 SDKROOT=/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.0.sdk
-DEVROOT=
-export CC=${DEVROOT}/usr/bin/llvm-gcc
-export CXX=${DEVROOT}/usr/bin/llvm-g++
+DEVROOT=/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/
+export CC=${DEVROOT}/usr/bin/clang
+export CXX=${DEVROOT}/usr/bin/clang++
 
 ###################################################
 # Build armv7 version, 
 ###################################################
-export CFLAGS="-arch armv7 -isysroot $SDKROOT"
-export CXXFLAGS="$CFLAGS"
-export LDFLAGS="-arch armv7 -isysroot $SDKROOT -Wl,-syslibroot $SDKROOT"
+export ARCH_TARGET="-arch armv7 -isysroot $SDKROOT"
+export CFLAGS="${ARCH_TARGET}"
+export CXXFLAGS="$CFLAGS -std=c++11 -stdlib=libc++"
+export LDFLAGS="${ARCH_TARGET} -stdlib=libc++ -Wl,-syslibroot $SDKROOT"
 ./configure --prefix=$TMP_DIR/armv7 \
         --with-protoc=${TMP_DIR}/i386/bin/protoc \
         --disable-shared \
@@ -37,9 +38,10 @@ make install || exit 4
 ###################################################
 # Build armv7s version, 
 ###################################################
-export CFLAGS="-arch armv7s -isysroot $SDKROOT"
-export CXXFLAGS="$CFLAGS"
-export LDFLAGS="-arch armv7s -isysroot $SDKROOT -Wl,-syslibroot $SDKROOT"
+export ARCH_TARGET="-arch armv7s -isysroot $SDKROOT"
+export CFLAGS="${ARCH_TARGET}"
+export CXXFLAGS="$CFLAGS -std=c++11 -stdlib=libc++"
+export LDFLAGS="${ARCH_TARGET} -stdlib=libc++ -Wl,-syslibroot $SDKROOT"
 ./configure --prefix=$TMP_DIR/armv7s \
         --with-protoc=${TMP_DIR}/i386/bin/protoc \
         --disable-shared \
