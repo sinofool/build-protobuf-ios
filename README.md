@@ -1,3 +1,11 @@
+Deprecated
+==================
+I have gived up using protobuf on iOS for complex of C++01 and legacy library linking problem.  
+This will not update until get rid of my legacy problem.  
+
+Keep this repository for reference only.
+
+
 build-protobuf-ios
 ==================
 
