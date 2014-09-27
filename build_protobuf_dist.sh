@@ -1,8 +1,8 @@
 #!/bin/bash
 TMP_DIR=/tmp/protobuf_$$
 
-curl -O https://raw.githubusercontent.com/sinofool/build-protobuf-ios/master/patch-arm64.patch
-patch src/google/protobuf/stubs/platform_macros.h < patch-arm64.patch
+#curl -O https://raw.githubusercontent.com/sinofool/build-protobuf-ios/master/patch-arm64.patch
+#patch src/google/protobuf/stubs/platform_macros.h < patch-arm64.patch
 
 ###################################################
 # Build i386 version first, 
@@ -29,7 +29,7 @@ make install || exit 4
 # iOS SDK location. 
 ###################################################
 
-SDKROOT=/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.1.sdk
+SDKROOT=/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.0.sdk
 DEVROOT=/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/
 export CC=${DEVROOT}/usr/bin/clang
 export CXX=${DEVROOT}/usr/bin/clang++
