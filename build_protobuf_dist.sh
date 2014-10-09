@@ -62,7 +62,7 @@ build_for arm64 arm-apple-darwin
 ###################################################
 # Packing
 ###################################################
-DIST_DIR=$HOME/Desktop/protobuf_dist
+DIST_DIR=$HOME/Desktop/protobuf-dist
 rm -rf ${DIST_DIR}
 mkdir -p ${DIST_DIR}
 mkdir ${DIST_DIR}/{bin,lib}
