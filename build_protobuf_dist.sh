@@ -29,7 +29,7 @@ make install || exit 4
 # iOS SDK location. 
 ###################################################
 
-SDKROOT=/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.1.sdk
+SDKROOT=/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.2.sdk
 DEVROOT=/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/
 export CC=${DEVROOT}/usr/bin/clang
 export CXX=${DEVROOT}/usr/bin/clang++
@@ -62,7 +62,8 @@ build_for arm64 arm-apple-darwin
 ###################################################
 # Packing
 ###################################################
-DIST_DIR=$HOME/Desktop/protobuf-dist
+DFT_DIST_DIR=$HOME/Desktop/protobuf-dist
+DIST_DIR=${DIST_DIR:-$DFT_DIST_DIR}
 rm -rf ${DIST_DIR}
 mkdir -p ${DIST_DIR}
 mkdir ${DIST_DIR}/{bin,lib}
